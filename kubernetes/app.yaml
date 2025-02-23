@@ -11,6 +11,14 @@ metadata:
     - apiVersion: apps/v1
       fieldsType: FieldsV1
       fieldsV1:
+        'f:spec':
+          'f:replicas': {}
+      manager: vpa-recommender
+      operation: Update
+      subresource: scale
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
         'f:metadata':
           'f:labels':
             .: {}
@@ -18,7 +26,6 @@ metadata:
             'f:app.kubernetes.io/managed-by': {}
         'f:spec':
           'f:progressDeadlineSeconds': {}
-          'f:replicas': {}
           'f:revisionHistoryLimit': {}
           'f:selector': {}
           'f:strategy':
@@ -84,11 +91,11 @@ metadata:
       manager: kube-controller-manager
       operation: Update
       subresource: status
-      time: '2025-02-23T08:10:43Z'
+      time: '2025-02-23T08:15:46Z'
   name: crick-app-1
   namespace: default
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: crick-app-1
@@ -183,10 +190,11 @@ metadata:
           'f:currentMetrics': {}
           'f:currentReplicas': {}
           'f:desiredReplicas': {}
+          'f:lastScaleTime': {}
       manager: vpa-recommender
       operation: Update
       subresource: status
-      time: '2025-02-23T08:14:16Z'
+      time: '2025-02-23T08:26:18Z'
   name: crick-app-1-hpa-fbkv
   namespace: default
 spec:
