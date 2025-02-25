@@ -1,12 +1,58 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: cric-app-1
+  namespace: default
   annotations:
     autopilot.gke.io/resource-adjustment: >-
       {"input":{"containers":[{"name":"real-time-crick-score-app-1"}]},"output":{"containers":[{"limits":{"ephemeral-storage":"1Gi"},"requests":{"cpu":"500m","ephemeral-storage":"1Gi","memory":"2Gi"},"name":"real-time-crick-score-app-1"}]},"modified":true}
     autopilot.gke.io/warden-version: 31.23.0-gke.8
   labels:
     app: cric-app-1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cric-app-1
+      app.kubernetes.io/managed-by: gcp-cloud-build-deploy
+      app.kubernetes.io/name: cric-app-1
+      app.kubernetes.io/version: 866921d34f9c6795a6e73bc0c114abc49f614f71  
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+template:
+    metadata:
+      labels:
+        app: cric-app-1
+        app.kubernetes.io/managed-by: gcp-cloud-build-deploy
+        app.kubernetes.io/name: cric-app-1
+        app.kubernetes.io/version: 866921d34f9c6795a6e73bc0c114abc49f614f71
+    spec:
+      containers:
+        - name: real-time-crick-score-app-1
+          image: gcr.io/qwiklabs-gcp-02-8a238479b6fd/github.com/mathankrish/real-time-crick-score-app
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              ephemeral-storage: 1Gi
+            requests:
+              cpu: 500m
+              ephemeral-storage: 1Gi
+              memory: 2Gi
+          securityContext:
+            capabilities:
+              drop:
+                - NET_RAW
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+      tolerations:
+        - effect: NoSchedule
+          key: kubernetes.io/arch
+          operator: Equal
+          value: amd64    
   managedFields:
     - apiVersion: apps/v1
       fieldsType: FieldsV1
