@@ -4,7 +4,6 @@ import json
 from tabulate import tabulate
 import os
 
-#Sample change
 app = Flask(__name__)
 
 def fetch_cricket_scores():
