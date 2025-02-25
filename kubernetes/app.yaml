@@ -1,11 +1,11 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cric-app-1
   namespace: default
   annotations:
-    autopilot.gke.io/resource-adjustment: '{"input":{"containers":[{"name":"real-time-crick-score-app-1"}]},"output":{"containers":[{"limits":{"ephemeral-storage":"1Gi"},"requests":{"cpu":"500m","ephemeral-storage":"1Gi","memory":"2Gi"},"name":"real-time-crick-score-app-1"}]},"modified":true}'
+    autopilot.gke.io/resource-adjustment: >-
+      {"input":{"containers":[{"name":"real-time-crick-score-app-1"}]},"output":{"containers":[{"limits":{"ephemeral-storage":"1Gi"},"requests":{"cpu":"500m","ephemeral-storage":"1Gi","memory":"2Gi"},"name":"real-time-crick-score-app-1"}]},"modified":true}
     autopilot.gke.io/warden-version: 31.23.0-gke.8
   labels:
     app: cric-app-1
@@ -55,6 +55,7 @@ spec:
           value: amd64
 
 ---
+
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -78,6 +79,7 @@ spec:
     name: cric-app-1
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
