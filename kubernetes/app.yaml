@@ -50,7 +50,7 @@ metadata:
               'f:terminationGracePeriodSeconds': {}
       manager: unknown
       operation: Update
-      time: '2025-02-25T05:22:27Z'
+      time: '2025-02-25T05:41:57Z'
     - apiVersion: apps/v1
       fieldsType: FieldsV1
       fieldsV1:
@@ -84,7 +84,7 @@ metadata:
       manager: kube-controller-manager
       operation: Update
       subresource: status
-      time: '2025-02-25T05:24:14Z'
+      time: '2025-02-25T05:42:05Z'
   name: cric-app-1
   namespace: default
 spec:
@@ -152,7 +152,7 @@ metadata:
             'f:name': {}
       manager: unknown
       operation: Update
-      time: '2025-02-25T05:22:28Z'
+      time: '2025-02-25T05:36:18Z'
     - apiVersion: autoscaling/v2
       fieldsType: FieldsV1
       fieldsV1:
@@ -186,8 +186,8 @@ metadata:
       manager: vpa-recommender
       operation: Update
       subresource: status
-      time: '2025-02-25T05:25:29Z'
-  name: cric-app-1-hpa-uxgq
+      time: '2025-02-25T05:39:30Z'
+  name: cric-app-1-hpa-g3z0
   namespace: default
 spec:
   maxReplicas: 5
